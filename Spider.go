@@ -52,7 +52,7 @@ func GetJoy(url string, ch chan int, th int) (result string, err error) {
 
 	//fmt.Println("title = ", title)
 
-	file, err1 := os.Create("./file/" + title + ".txt")
+	file, err1 := os.Create("./joys/" + title + ".txt")
 	defer file.Close()
 	if err1 != nil {
 		err = err1
@@ -120,6 +120,10 @@ func main() {
 	fmt.Scan(&start)
 	fmt.Println("请输入终止页（>=起始页)")
 	fmt.Scan(&end)
-
+	_dir := "./joys"
+	err := os.Mkdir(_dir, os.ModePerm)
+	if err != nil {
+		fmt.Println("err = ", err)
+	}
 	DoWork(start, end)
 }
